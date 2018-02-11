@@ -1,4 +1,5 @@
 import React from "react";
+import { Flag } from "semantic-ui-react";
 
 const componentName = () => (
   <div className="ui borderless main menu">
@@ -29,6 +30,9 @@ const componentName = () => (
           </div>
           <div className="item">Link Item</div>
         </div>
+      </a>
+      <a href="#0" className="item">
+        <Flag name="vn" />
       </a>
     </div>
   </div>

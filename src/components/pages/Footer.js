@@ -1,7 +1,10 @@
 import React from "react";
 
 const componentName = () => (
-  <div className="ui inverted vertical footer segment">
+  <div
+    className="ui inverted vertical footer segment"
+    style={{ position: "absolute", bottom: 0, width: "100vw" }}
+  >
     <div className="ui center aligned container">
       <div className="ui stackable inverted divided grid">
         <div className="three wide column">
