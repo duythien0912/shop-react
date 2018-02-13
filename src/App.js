@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Header from "./components/pages/Header";
 import HomePage from "./components/pages/HomePage";
 import LoginPage from "./components/pages/LoginPage";
+import SignupPage from "./components/pages/SignupPage";
 import DashBoardPage from "./components/pages/DashBoardPage";
 import Footer from "./components/pages/Footer";
 import UserRoute from "./components/routers/UserRouter";
@@ -19,6 +20,12 @@ const App = ({ location }) => (
         path="/login"
         exact
         component={LoginPage}
+      />
+      <GuestRoute
+        location={location}
+        path="/signup"
+        exact
+        component={SignupPage}
       />
       <UserRoute
         location={location}
