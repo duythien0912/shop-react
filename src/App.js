@@ -6,6 +6,7 @@ import HomePage from "./components/pages/HomePage";
 import LoginPage from "./components/pages/LoginPage";
 import SignupPage from "./components/pages/SignupPage";
 import DashBoardPage from "./components/pages/DashBoardPage";
+import ConfirmationPage from "./components/pages/ConfirmationPage";
 import Footer from "./components/pages/Footer";
 import UserRoute from "./components/routers/UserRouter";
 import GuestRoute from "./components/routers/GuestRoute";
@@ -15,6 +16,12 @@ const App = ({ location }) => (
     <Route path="/*" exact component={Header} />
     <div className="ui text container">
       <Route location={location} path="/" exact component={HomePage} />
+      <Route
+        location={location}
+        path="/confirmation/:token"
+        exact
+        component={ConfirmationPage}
+      />
       <GuestRoute
         location={location}
         path="/login"
