@@ -5,6 +5,8 @@ import Header from "./components/pages/Header";
 import HomePage from "./components/pages/HomePage";
 import LoginPage from "./components/pages/LoginPage";
 import SignupPage from "./components/pages/SignupPage";
+import ResetPasswordPage from "./components/pages/ResetPasswordPage";
+import ResetPasswordOkPage from "./components/pages/ResetPasswordOkPage";
 import DashBoardPage from "./components/pages/DashBoardPage";
 import ConfirmationPage from "./components/pages/ConfirmationPage";
 import Footer from "./components/pages/Footer";
@@ -33,6 +35,18 @@ const App = ({ location }) => (
         path="/signup"
         exact
         component={SignupPage}
+      />
+      <GuestRoute
+        location={location}
+        path="/reset_password"
+        exact
+        component={ResetPasswordPage}
+      />
+      <GuestRoute
+        location={location}
+        path="/reset_password_ok/:token"
+        exact
+        component={ResetPasswordOkPage}
       />
       <UserRoute
         location={location}
