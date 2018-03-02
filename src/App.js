@@ -1,7 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import PropTypes from "prop-types";
-import Header from "./components/pages/Header";
 import HomePage from "./components/pages/HomePage";
 import LoginPage from "./components/pages/LoginPage";
 import SignupPage from "./components/pages/SignupPage";
@@ -9,13 +8,14 @@ import ResetPasswordPage from "./components/pages/ResetPasswordPage";
 import ResetPasswordOkPage from "./components/pages/ResetPasswordOkPage";
 import DashBoardPage from "./components/pages/DashBoardPage";
 import ConfirmationPage from "./components/pages/ConfirmationPage";
-import Footer from "./components/pages/Footer";
 import UserRoute from "./components/routers/UserRouter";
 import GuestRoute from "./components/routers/GuestRoute";
+import TopNavigation from "./components/navigation/TopNavigation";
+import BottomNavigation from "./components/navigation/BottomNavigation";
 
 const App = ({ location }) => (
   <div>
-    <Route path="/*" exact component={Header} />
+    <TopNavigation />
     <div className="ui text container">
       <Route location={location} path="/" exact component={HomePage} />
       <Route
@@ -55,8 +55,7 @@ const App = ({ location }) => (
         component={DashBoardPage}
       />
     </div>
-    <br />
-    <Route path="/*" exact component={Footer} />
+    <BottomNavigation />
   </div>
 );
 
