@@ -1,6 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import PropTypes from "prop-types";
+
 import HomePage from "./components/pages/HomePage";
 import LoginPage from "./components/pages/LoginPage";
 import SignupPage from "./components/pages/SignupPage";
@@ -8,8 +9,11 @@ import ResetPasswordPage from "./components/pages/ResetPasswordPage";
 import ResetPasswordOkPage from "./components/pages/ResetPasswordOkPage";
 import DashBoardPage from "./components/pages/DashBoardPage";
 import ConfirmationPage from "./components/pages/ConfirmationPage";
+import NewItemPage from "./components/pages/NewItemPage";
+
 import UserRoute from "./components/routers/UserRouter";
 import GuestRoute from "./components/routers/GuestRoute";
+
 import TopNavigation from "./components/navigation/TopNavigation";
 import BottomNavigation from "./components/navigation/BottomNavigation";
 
@@ -17,7 +21,12 @@ const App = ({ location }) => (
   <div>
     <TopNavigation />
     <div className="ui text container">
-      <Route location={location} path="/" exact component={HomePage} />
+      <Route
+        location={location}
+        path="/"
+        exact
+        component={HomePage}
+      />
       <Route
         location={location}
         path="/confirmation/:token"
@@ -53,6 +62,12 @@ const App = ({ location }) => (
         path="/dashboard"
         exact
         component={DashBoardPage}
+      />
+      <UserRoute
+        location={location}
+        path="/item/new"
+        exact
+        component={NewItemPage}
       />
     </div>
     <BottomNavigation />

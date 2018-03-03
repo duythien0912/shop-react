@@ -1,31 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { Card, Icon } from "semantic-ui-react";
+
 import ConfirmEmailMessage from "../messages/ConfirmEmailMessage";
 
 const DashboardPage = ({ isConfirmed }) => (
   <div>
-    <div className="ui visible inverted left vertical sidebar menu">
-      <a className="item">
-        <i className="home icon" />
-        Home
-      </a>
-      <a className="item">
-        <i className="block layout icon" />
-        Topics
-      </a>
-      <a className="item">
-        <i className="smile icon" />
-        Friends
-      </a>
-      <a className="item">
-        <i className="calendar icon" />
-        History
-      </a>
-    </div>
-    <div />
-
     {!isConfirmed && <ConfirmEmailMessage />}
+    {isConfirmed && (
+      <div>
+        <Card centered>
+          <Card.Content textAlign="center">
+            <Card.Header>Add new Item</Card.Header>
+            <Link to="/item/new">
+              <Icon name="plus circle" size="massive" />
+            </Link>
+          </Card.Content>
+        </Card>
+      </div>
+    )}
   </div>
 );
 

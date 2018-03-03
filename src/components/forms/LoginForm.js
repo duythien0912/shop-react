@@ -35,7 +35,8 @@ class LoginForm extends React.Component {
 
   validate = data => {
     const errors = {};
-    if (!Validator.isEmail(data.email)) errors.email = "Invalid email";
+    if (!Validator.isEmail(data.email))
+      errors.email = "Invalid email";
     if (!data.password) errors.password = "Can't be blank";
     return errors;
   };
@@ -74,7 +75,9 @@ class LoginForm extends React.Component {
               value={data.password}
               onChange={this.onChange}
             />
-            {errors.password && <InlineError text={errors.password} />}
+            {errors.password && (
+              <InlineError text={errors.password} />
+            )}
           </Form.Field>
           <Button primary>Login</Button>
         </Form>
