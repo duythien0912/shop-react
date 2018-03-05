@@ -27,16 +27,16 @@ class SearchItemForm extends React.Component {
     this.setState({ loading: true });
     axios
       .get(`/api/items/search?q=${this.state.query}`)
-      .then(res => res.data.items)
-      .then(items => {
+      .then(res => res.data.anime)
+      .then(anime => {
         const options = [];
         const itemsHash = {};
-        items.forEach(item => {
-          itemsHash[item.albumId] = item;
+        anime.forEach(anime1 => {
+          itemsHash[anime1.seriesAnimedbId] = anime1;
           options.push({
-            key: item.albumId,
-            value: item.albumId,
-            text: item.title
+            key: anime1.seriesAnimedbId,
+            value: anime1.seriesAnimedbId,
+            text: anime1.seriesTitle
           });
         });
         this.setState({ loading: false, options, items: itemsHash });

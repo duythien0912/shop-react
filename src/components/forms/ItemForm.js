@@ -11,25 +11,31 @@ import InlineError from "../messages/InlineError";
 
 const propTypes = {
   submit: PropTypes.func.isRequired,
-  item: PropTypes.shape({
-    albumId: PropTypes.number.isRequired,
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    url: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    thumbnailUrl: PropTypes.string.isRequired
+  anime: PropTypes.shape({
+    seriesAnimedbId: PropTypes.string.isRequired,
+    seriesTitle: PropTypes.string.isRequired,
+    seriesSynonyms: PropTypes.string.isRequired,
+    seriesEpisodes: PropTypes.string.isRequired,
+    seriesStatus: PropTypes.string.isRequired,
+    seriesStart: PropTypes.string.isRequired,
+    seriesEnd: PropTypes.string.isRequired,
+    seriesImage: PropTypes.string.isRequired
   }).isRequired
 };
 
 class ItemForm extends React.Component {
   state = {
     data: {
-      albumId: this.props.item.albumId,
-      id: this.props.item.id,
-      title: this.props.item.title,
-      url0: this.props.item.url[0],
-      thumbnailUrl: this.props.item.thumbnailUrl
+      seriesAnimedbId: this.props.anime.seriesAnimedbId,
+      seriesTitle: this.props.anime.seriesTitle,
+      seriesSynonyms: this.props.anime.seriesSynonyms,
+      seriesEpisodes: this.props.anime.seriesEpisodes,
+      seriesStatus: this.props.anime.seriesStatus,
+      seriesStart: this.props.anime.seriesStart,
+      seriesEnd: this.props.anime.seriesEnd,
+      seriesImage: this.props.anime.seriesImage
     },
-    url: this.props.item.url,
+    seriesImage: this.props.anime.seriesImage,
     index: 0,
     loading: false,
     errors: {}
@@ -38,13 +44,22 @@ class ItemForm extends React.Component {
   componentWillReceiveProps(props) {
     this.setState({
       data: {
-        albumId: props.item.albumId,
-        id: props.item.id,
-        title: props.item.title,
-        url0: props.item.url[0],
-        thumbnailUrl: props.item.thumbnailUrl
+        /*        albumId: props.anime.seriesAnimedbId,
+        id: props.anime.seriesTitle,
+        title: props.anime.seriesSynonyms,
+        seriesImage0: props.anime.seriesImage[0],
+        thumbnailUrl: props.anime.thumbnailUrl */
+
+        seriesAnimedbId: props.anime.seriesAnimedbId,
+        seriesTitle: props.anime.seriesTitle,
+        seriesSynonyms: props.anime.seriesSynonyms,
+        seriesEpisodes: props.anime.seriesEpisodes,
+        seriesStatus: props.anime.seriesStatus,
+        seriesStart: props.anime.seriesStart,
+        seriesEnd: props.anime.seriesEnd,
+        seriesImage: props.anime.seriesImage
       },
-      url: props.item.url
+      seriesImage: props.anime.seriesImage
     });
   }
 
@@ -79,19 +94,30 @@ class ItemForm extends React.Component {
   };
 
   changeUrl = () => {
-    const { index, url } = this.state;
-    const newIndex = index + 1 >= url.length ? 0 : index + 1;
+    const { index, seriesImage } = this.state;
+    const newIndex = index + 1 >= seriesImage.length ? 0 : index + 1;
     this.setState({
       index: newIndex,
-      data: { ...this.state.date, url0: url[newIndex] }
+      data: {
+        ...this.state.date,
+        seriesImage: seriesImage[newIndex]
+      }
     });
   };
 
   validate = data => {
     const errors = {};
-    if (!data.title) errors.title = "Can't be black";
-    if (!data.url) errors.url = "Can't be black";
-    if (!data.thumbnailUrl) errors.thumbnailUrl = "Can't be black";
+    if (!data.seriesAnimedbId)
+      errors.seriesAnimedbId = "Can't be black";
+    if (!data.seriesTitle) errors.seriesTitle = "Can't be black";
+    if (!data.seriesSynonyms)
+      errors.seriesSynonyms = "Can't be black";
+    if (!data.seriesEpisodes)
+      errors.seriesEpisodes = "Can't be black";
+    if (!data.seriesStatus) errors.seriesStatus = "Can't be black";
+    /*    if (!data.seriesStart) errors.seriesStart = "Can't be black";
+    if (!data.seriesEnd) errors.seriesEnd = "Can't be black"; */
+    if (!data.seriesImage) errors.seriesImage = "Can't be black";
     return errors;
   };
 
@@ -104,35 +130,86 @@ class ItemForm extends React.Component {
           <Grid columns={2}>
             <Grid.Row>
               <Grid.Column>
-                <Form.Field error={!!errors.title}>
-                  <label htmlFor="title">Title</label>
+                <Form.Field error={!!errors.seriesTitle}>
+                  <label htmlFor="seriesTitle">Series Title</label>
                   <input
                     type="text"
-                    id="title"
-                    name="title"
-                    placeholder="Your new Title"
-                    value={data.title}
+                    id="seriesTitle"
+                    name="seriesTitle"
+                    placeholder="Your new seriesTitle"
+                    value={data.seriesTitle}
                     onChange={this.onChange}
                   />
                   {errors.title && (
-                    <InlineError text={errors.title} />
+                    <InlineError text={errors.seriesTitle} />
                   )}
                 </Form.Field>
 
-                <Form.Field error={!!errors.url}>
-                  <label htmlFor="url">Url</label>
+                <Form.Field error={!!errors.seriesSynonyms}>
+                  <label htmlFor="seriesSynonyms">
+                    Series Synonyms
+                  </label>
                   <input
-                    type="url"
-                    id="url"
-                    name="url"
-                    placeholder="Your new Url"
-                    value={data.url0}
+                    type="text"
+                    id="seriesSynonyms"
+                    name="seriesSynonyms"
+                    placeholder="Your new Series Synonyms"
+                    value={data.seriesSynonyms}
                     onChange={this.onChange}
                   />
-                  {errors.url && <InlineError text={errors.url} />}
+                  {errors.title && (
+                    <InlineError text={errors.seriesSynonyms} />
+                  )}
                 </Form.Field>
 
-                <Form.Field error={!!errors.thumbnailUrl}>
+                <Form.Field error={!!errors.seriesEpisodes}>
+                  <label htmlFor="seriesEpisodes">
+                    Series Episodes
+                  </label>
+                  <input
+                    type="text"
+                    id="seriesEpisodes"
+                    name="seriesEpisodes"
+                    placeholder="Your new Series Episodes"
+                    value={data.seriesEpisodes}
+                    onChange={this.onChange}
+                  />
+                  {errors.title && (
+                    <InlineError text={errors.seriesEpisodes} />
+                  )}
+                </Form.Field>
+
+                <Form.Field error={!!errors.seriesStatus}>
+                  <label htmlFor="seriesStatus">Series Status</label>
+                  <input
+                    type="text"
+                    id="seriesStatus"
+                    name="seriesStatus"
+                    placeholder="Your new Series Status"
+                    value={data.seriesStatus}
+                    onChange={this.onChange}
+                  />
+                  {errors.title && (
+                    <InlineError text={errors.seriesStatus} />
+                  )}
+                </Form.Field>
+
+                <Form.Field error={!!errors.seriesImage}>
+                  <label htmlFor="seriesImage">Series Image</label>
+                  <input
+                    type="url"
+                    id="seriesImage"
+                    name="seriesImage"
+                    placeholder="Your new seriesImage"
+                    value={data.seriesImage}
+                    onChange={this.onChange}
+                  />
+                  {errors.seriesImage && (
+                    <InlineError text={errors.seriesImage} />
+                  )}
+                </Form.Field>
+
+                {/*          <Form.Field error={!!errors.thumbnailUrl}>
                   <label htmlFor="thumbnailUrl">ThumbnailUrl</label>
                   <input
                     type="url"
@@ -145,11 +222,11 @@ class ItemForm extends React.Component {
                   {errors.thumbnailUrl && (
                     <InlineError text={errors.thumbnailUrl} />
                   )}
-                </Form.Field>
+                </Form.Field> */}
               </Grid.Column>
               <Grid.Column>
-                <Image size="small" src={data.url0} />
-                {this.state.url.length > 1 && (
+                <Image size="medium" src={data.seriesImage} />
+                {this.state.seriesImage.length > 1 && (
                   <a
                     role="button"
                     tabIndex={0}

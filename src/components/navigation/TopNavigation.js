@@ -7,40 +7,65 @@ import { connect } from "react-redux";
 import * as actions from "../../actions/auth";
 
 const TopNavigation = ({ isAuthenticated, logout, user }) => (
-  <div className="ui borderless main menu">
-    <div className="ui text container">
-      <Link to="/" className="header item">
-        Project Name
-      </Link>
-      <Link to="/shop" className="item">
-        Shop
-      </Link>
-
-      <Link to="/dashboard" className="item">
-        Dash Board
-      </Link>
-      <a className="ui right floated item">
+  <div>
+    <div className="ui menu">
+      <div className="item">
+        <Link to="/" className="header item">
+          Project Name
+        </Link>
+      </div>
+      <div className="item">
+        <Link to="/shop" className="item">
+          Shop
+        </Link>
+      </div>
+      <div className="item">
+        <Link to="/dashboard" className="item">
+          Dash Board
+        </Link>
+      </div>
+      <div className="right menu">
         {isAuthenticated ? (
-          <Dropdown trigger={<Image avatar src={gravatar(user.email)} />}>
-            <Dropdown.Menu>
-              <Dropdown.Item
-                className="ui secondary basic button"
-                onClick={() => logout()}
-              >
-                Logout
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+          <div className="item">
+            <Dropdown
+              trigger={<Image avatar src={gravatar(user.email)} />}
+            >
+              <Dropdown.Menu>
+                <Dropdown.Item
+                  className="ui secondary basic button"
+                  onClick={() => logout()}
+                >
+                  <div className="item">Logout</div>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <Link to="/dashboard" className="item">
+                    Dash Board
+                  </Link>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
         ) : (
-          <div>
-            <Link to="/login">Login</Link> -or-
-            <Link to="/signup">Sign Up</Link>
+          <div className="item">
+            <div className="item">
+              <div className="ui primary basic button">
+                <Link to="/login">Login</Link>
+              </div>
+            </div>
+
+            <div className="item">
+              <div className="ui positive basic button">
+                <Link to="/signup">Sign Up</Link>
+              </div>
+            </div>
           </div>
         )}
-      </a>
-      <a href="#0" className="item">
-        <Flag name="vn" />
-      </a>
+
+        <a className="item">
+          {" "}
+          <Flag name="vn" />
+        </a>
+      </div>
     </div>
   </div>
 );

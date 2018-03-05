@@ -22,7 +22,10 @@ class NewItemPage extends React.Component {
           <SearchItemForm onItemSelect={this.onItemSelect} />
 
           {this.state.item && (
-            <ItemForm submit={this.addItem} item={this.state.item} />
+            <ItemForm
+              submit={this.addItem}
+              anime={this.state.item}
+            />
           )}
         </Segment>
       </div>

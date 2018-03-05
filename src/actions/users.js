@@ -6,3 +6,5 @@ export const signup = data => dispatch =>
     localStorage.shopJWT = user.token;
     dispatch(userLoggedIn(user));
   });
+
+export const abcc = () => {};
