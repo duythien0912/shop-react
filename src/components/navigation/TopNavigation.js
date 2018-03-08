@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { Flag, Dropdown, Image } from "semantic-ui-react";
+import { Flag, Dropdown, Image, Button } from "semantic-ui-react";
 import gravatar from "gravatar-url";
 import { connect } from "react-redux";
 import * as actions from "../../actions/auth";
@@ -24,47 +24,55 @@ const TopNavigation = ({ isAuthenticated, logout, user }) => (
           Dash Board
         </Link>
       </div>
-      <div className="right menu">
-        {isAuthenticated ? (
-          <div className="item">
-            <Dropdown
-              trigger={<Image avatar src={gravatar(user.email)} />}
-            >
-              <Dropdown.Menu>
-                <Dropdown.Item
-                  className="ui secondary basic button"
-                  onClick={() => logout()}
-                >
-                  <div className="item">Logout</div>
-                </Dropdown.Item>
-                <Dropdown.Item>
-                  <Link to="/dashboard" className="item">
-                    Dash Board
-                  </Link>
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </div>
-        ) : (
-          <div className="item">
-            <div className="item">
-              <div className="ui primary basic button">
-                <Link to="/login">Login</Link>
-              </div>
-            </div>
-
-            <div className="item">
-              <div className="ui positive basic button">
-                <Link to="/signup">Sign Up</Link>
-              </div>
-            </div>
-          </div>
+      <div className="right item">
+        {isAuthenticated && (
+          <Link to="/item/new">
+            {/* <Icon name="add circle" size="big" /> */}
+            <Button basic color="green">
+              Add new Item
+            </Button>
+          </Link>
         )}
-
-        <a className="item">
-          <Flag name="vn" />
-        </a>
       </div>
+      {isAuthenticated ? (
+        <div className="item">
+          <Dropdown
+            trigger={<Image avatar src={gravatar(user.email)} />}
+          >
+            <Dropdown.Menu>
+              <Dropdown.Item
+                className="ui secondary basic button"
+                onClick={() => logout()}
+              >
+                <div className="item">Logout</div>
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <Link to="/dashboard" className="item">
+                  Dash Board
+                </Link>
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+      ) : (
+        <div className="item">
+          <div className="item">
+            <div className="ui primary basic button">
+              <Link to="/login">Login</Link>
+            </div>
+          </div>
+
+          <div className="item">
+            <div className="ui positive basic button">
+              <Link to="/signup">Sign Up</Link>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <a className="item">
+        <Flag name="vn" />
+      </a>
     </div>
   </div>
 );
