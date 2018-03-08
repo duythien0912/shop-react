@@ -48,9 +48,11 @@ class SearchItemForm extends React.Component {
       <div>
         <Form>
           <Dropdown
-            search
             fluid
-            placeholder="Search Item by title"
+            search
+            selection
+            icon="search"
+            placeholder="Search series anime by title"
             value={this.state.query}
             onSearchChange={this.onSearchChange}
             options={this.state.options}

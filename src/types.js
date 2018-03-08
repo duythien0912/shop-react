@@ -1,2 +1,4 @@
 export const USER_LOGGED_IN = "USER_LOGGED_IN";
 export const USER_LOGGED_OUT = "USER_LOGGED_OUT";
+export const ANIME_FETCHED = "ANIME_FETCHED";
+export const ANIME_CREATED = "ANIME_CREATED";

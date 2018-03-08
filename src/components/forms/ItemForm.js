@@ -84,12 +84,14 @@ class ItemForm extends React.Component {
     this.setState({ errors });
     if (Object.keys(errors).length === 0) {
       this.setState({ loading: true });
-      this.props.submit(this.state.data).catch(err =>
-        this.setState({
-          errors: err.response.data.errors,
-          loading: false
-        })
-      );
+      this.props
+        .submit(this.state.data)
+        .catch(err =>
+          this.setState({
+            errors: err.response.data.errors,
+            loading: false
+          })
+        );
     }
   };
 
@@ -194,21 +196,6 @@ class ItemForm extends React.Component {
                   )}
                 </Form.Field>
 
-                <Form.Field error={!!errors.seriesImage}>
-                  <label htmlFor="seriesImage">Series Image</label>
-                  <input
-                    type="url"
-                    id="seriesImage"
-                    name="seriesImage"
-                    placeholder="Your new seriesImage"
-                    value={data.seriesImage}
-                    onChange={this.onChange}
-                  />
-                  {errors.seriesImage && (
-                    <InlineError text={errors.seriesImage} />
-                  )}
-                </Form.Field>
-
                 {/*          <Form.Field error={!!errors.thumbnailUrl}>
                   <label htmlFor="thumbnailUrl">ThumbnailUrl</label>
                   <input
@@ -235,6 +222,20 @@ class ItemForm extends React.Component {
                     More img
                   </a>
                 )}
+                <Form.Field error={!!errors.seriesImage}>
+                  <label htmlFor="seriesImage">Series Image</label>
+                  <input
+                    type="url"
+                    id="seriesImage"
+                    name="seriesImage"
+                    placeholder="Your new seriesImage"
+                    value={data.seriesImage}
+                    onChange={this.onChange}
+                  />
+                  {errors.seriesImage && (
+                    <InlineError text={errors.seriesImage} />
+                  )}
+                </Form.Field>
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>

@@ -62,7 +62,6 @@ const TopNavigation = ({ isAuthenticated, logout, user }) => (
         )}
 
         <a className="item">
-          {" "}
           <Flag name="vn" />
         </a>
       </div>
