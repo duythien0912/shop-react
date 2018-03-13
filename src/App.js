@@ -17,13 +17,21 @@ import GuestRoute from "./components/routers/GuestRoute";
 import TopNavigation from "./components/navigation/TopNavigation";
 import BottomNavigation from "./components/navigation/BottomNavigation";
 
+import HomePageContainer from "./components/container/HomePageContainer";
+
 const App = ({ location }) => (
   <div>
     <TopNavigation />
-    <div className="ui text container">
+    <div>
       <Route
         location={location}
         path="/"
+        exact
+        component={HomePageContainer}
+      />
+      <Route
+        location={location}
+        path="/testhome"
         exact
         component={HomePage}
       />

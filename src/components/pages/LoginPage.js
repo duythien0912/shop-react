@@ -7,10 +7,12 @@ import { login } from "../../actions/auth";
 
 class LoginPage extends React.Component {
   submit = data =>
-    this.props.login(data).then(() => this.props.history.push("/dashboard"));
+    this.props
+      .login(data)
+      .then(() => this.props.history.push("/dashboard"));
   render() {
     return (
-      <div>
+      <div className="ui container">
         <h1>LoginPage</h1>
 
         <LoginForm submit={this.submit} />

@@ -6,11 +6,13 @@ import { signup } from "../../actions/users";
 
 class SignupPage extends React.Component {
   submit = data =>
-    this.props.signup(data).then(() => this.props.history.push("/dashboard"));
+    this.props
+      .signup(data)
+      .then(() => this.props.history.push("/dashboard"));
 
   render() {
     return (
-      <div>
+      <div className="ui container">
         <h1>Sign Up</h1>
 
         <SignupForm submit={this.submit} />

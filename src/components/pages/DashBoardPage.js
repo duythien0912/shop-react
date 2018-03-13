@@ -6,6 +6,7 @@ import { Card, Image, Icon } from "semantic-ui-react";
 import ConfirmEmailMessage from "../messages/ConfirmEmailMessage";
 import { allItemSelector } from "../../reducers/items";
 import { fetchAnimes } from "../../actions/animes";
+import DashBoardNavigation from "../navigation/DashBoardNavigation";
 
 class DashboardPage extends React.Component {
   state = { visible: false };
@@ -21,9 +22,14 @@ class DashboardPage extends React.Component {
     return (
       <div>
         {!isConfirmed && <ConfirmEmailMessage />}
-        <Card.Group centered>
+        <DashBoardNavigation />
+        <Card.Group
+          centered
+          itemsPerRow={4}
+          className="ui container"
+        >
           {items.length === 0 ? (
-            <p>abc</p>
+            <p>Error database not found please try again</p>
           ) : (
             items.map(item => (
               <Card key={item._id}>

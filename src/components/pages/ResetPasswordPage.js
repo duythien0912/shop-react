@@ -17,7 +17,7 @@ class ResetPasswordPage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="ui container">
         {this.state.success ? (
           <Message>Email has been send</Message>
         ) : (
@@ -32,4 +32,6 @@ ResetPasswordPage.propTypes = {
   resetPasswordRequest: PropTypes.func.isRequired
 };
 
-export default connect(null, { resetPasswordRequest })(ResetPasswordPage);
+export default connect(null, { resetPasswordRequest })(
+  ResetPasswordPage
+);

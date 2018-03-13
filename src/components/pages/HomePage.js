@@ -13,7 +13,8 @@ const HomePage = ({ isAuthenticated, logout }) => (
       </button>
     ) : (
       <div>
-        <Link to="/login">Login</Link> or <Link to="/signup">Sign Up</Link>
+        <Link to="/login">Login</Link> or{" "}
+        <Link to="/signup">Sign Up</Link>
       </div>
     )}
   </div>
@@ -30,4 +31,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { logout: actions.logout })(HomePage);
+export default connect(mapStateToProps, { logout: actions.logout })(
+  HomePage
+);
